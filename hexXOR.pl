@@ -21,3 +21,4 @@ if ( $#ARGV != 1 ) { die "Usage: $0 <string1> <string2>\n"; }
 my ( $hex1, $hex2 ) = @ARGV;
 
 print "TEST: argument 1: $hex1\n";
+print "TEST: argument 2: $hex2\n";
