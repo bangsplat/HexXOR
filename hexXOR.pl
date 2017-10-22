@@ -15,15 +15,22 @@ use warnings;
 # written by Theron Trowbridge
 
 sub min($$);
+sub xor($$);
 
 if ( $#ARGV != 1 ) { die "Usage: $0 <string1> <string2>\n"; }
 
 my ( $str1, $str2 ) = @ARGV;
-my $formatString = "H" . min( length( $str1 ), length( $str2 ) );
-my $output = pack( $formatString, $str1 ) ^ pack( $formatString, $str2 );
-my $outputStr = unpack( $formatString, $output );
 
-print( "$outputStr\n" );
+print &xor( $str1, $str2 ) . "\n";
+
+sub xor($$) {
+    my $param1 = shift(@_);
+    my $param2 = shift(@_);
+    my $formatString = "H" . min( length( $param1 ), length( $param2 ) );
+    my $output = pack( $formatString, $param1 ) ^ pack( $formatString, $param2 );
+    my $outputStr = unpack( $formatString, $output );
+    return( $outputStr );
+}
 
 sub min($$) {
     my $a = shift(@_);
